@@ -1,0 +1,13 @@
+#pragma once
+#include <stdio.h>
+
+#define __awesome_ver 2
+#define DEBUG
+
+static void something_awesome(int a) {
+	printf("awesome: %d\n", a);
+}
+
+static void hello_awesome(char *name) {
+	printf("Hello %s, You are awesome.\n", name);
+}
