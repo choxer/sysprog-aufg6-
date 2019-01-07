@@ -1,0 +1,65 @@
+
+
+// 1. Makro
+
+#define 2_PI 3.14 + 3.14
+int rechnung = (2_PI * 3);
+
+/* wird zu dieser Zeile aufgeloest: */
+int rechnung = (3.14 + 3.14 * 3);
+
+// korrekt:
+#define 2_PI (3.14 + 3.14)
+#define 2_pi (2*(3.14))
+nicht beachtet wurde, dass pi auf nur zwei nachkommastellen gekürzt wurde
+
+
+#define MULT(a, b) (a * b)
+int rechnung = MULT(1 + 2, 5 + 1);
+
+/* wird zu dieser Zeile aufgeloest: */
+int rechnung = (1 + 2 * 5 + 1);
+
+// korrekt:
+#define MULT(a, b) ((a) * (b))
+
+
+
+#define ADD(a, b) (a) + (b)
+int rechnung = ADD(1, 3) * ADD(2, 4);
+
+/* wird zu dieser Zeile aufgeloest: */
+int rechnung = (1) + (3) * (2) + (4);
+
+// korrekt:
+#define ADD(a, b) ((a) + (b))
+
+
+// http://www.c-howto.de/tutorial/praeprozessor/makros/
+
+
+
+// 2. Makro
+
+a) SWAP(x,y)
+Das Makro vertauscht x mit y.
+
+
+#define SWAP(x,y)   { \
+   int j; \
+   j=x; x=y; y=j; \
+  }
+
+http://openbook.rheinwerk-verlag.de/c_von_a_bis_z/010_c_praeprozessor_002.htm
+
+
+b) LSB(x)
+Das Makro liefert das LSB (Least Significant Bit) von x zurück.
+
+
+#define LSB(x)  { \
+  int lsb = x & 1; \
+}
+
+--> GCC has a feature called statement expressions
+usage foo = LSB(x)
